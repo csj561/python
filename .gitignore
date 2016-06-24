@@ -1,0 +1,8 @@
+*.elf
+*.o
+*.obj
+*.so
+*.a
+*.log
+*.swp
+*.tmp
