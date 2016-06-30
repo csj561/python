@@ -1,2 +1,7 @@
+# install python lib for mysql
 python setup.py build
 python setup.py install
+
+# mysql broswer on win platform
+http://cdn.mysql.com/archives/mysql-query-browser/mysql-query-browser-1.1.20-win.msi
+https://pypi.python.org/pypi/MySQL-python/1.2.5
