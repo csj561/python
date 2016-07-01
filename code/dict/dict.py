@@ -1,6 +1,8 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 
+import os
+
 '''
 序号	函数及描述
 1	cmp(dict1, dict2)
