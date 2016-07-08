@@ -1,0 +1,14 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
+import sys,os,time
+if 1 == len(sys.argv):
+    print ("强制循环执行参数中所带的命令，直到命令返回状态为 0")
+    sys.exit(0)
+cmd=' '.join(sys.argv[1:])
+retry = 0;
+print ("Start execute %s..." %  cmd)
+while 0 != os.system(cmd):
+    retry +=1
+    print("Retry %d times. excute [%s]" % (retry,cmd))
+    time.sleep(1)
+
