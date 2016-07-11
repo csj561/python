@@ -1,0 +1,8 @@
+一些Python小的习题
+https://github.com/Yixiaohan/show-me-the-code.git
+
+Python好的项目推荐
+https://www.zhihu.com/question/29372574
+
+PIL手册
+http://effbot.org/imagingbook/image.htm
