@@ -1,0 +1,14 @@
+chengdu	14日（今天）	29	20℃
+
+chengdu	15日（明天）	33	20℃
+
+chengdu	16日（后天）	32	22℃
+
+chengdu	17日（周日）	32	23℃
+
+chengdu	18日（周一）	31	23℃
+
+chengdu	19日（周二）	30	22℃
+
+chengdu	20日（周三）	31	25℃
+
