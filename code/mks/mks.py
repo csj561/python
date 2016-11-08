@@ -1,10 +1,15 @@
 #! /usr/bin/python
 # coding:utf-8
-import os,shutil,getopt,sys
-
+import os,shutil,getopt,sys,re
+def get_target_type(nm):
+    if re.match('^lib.*\.so$',nm):
+        return 0
+    elif re.match('^lib.*\.a$',nm):
+        return 1
+    return 2
 def iter_path(path):
     ret=[]
-    src_ext=('.cpp','.c','.C','cxx')
+    src_ext=('.cpp','.c','.C','.cxx')
     for dirn,dirns,filens in os.walk(path):
         for i in filens:
             fn,ext=os.path.splitext(i)
@@ -22,14 +27,22 @@ def compiles(src_files):
             c_file=c_file[2:]
         out_file=obj_dir+ os.path.splitext(c_file.replace('/','_'))[0]+'.o' 
         cmd='g++ -o %s -c %s %s %s' % (out_file,c_file,cc_args,sys_cc_args)
+        if 0 == get_target_type(target):
+            cmd += ' -fPIC '
         print(cmd)
         if 0 != os.system(cmd):
             sys.exit(-1)
         ret.append(out_file)
     return ret
 def links(obj_files):
-    '输出文件 obj_files sys_args link_args user_lib sys_lib'
-    cmd="g++ -o %s %s %s %s %s %s" % (target," ".join(obj_files),sys_cc_args,link_args,user_lib,sys_lib)
+    cmd=''
+    if get_target_type(target) in (0,2):
+        '输出文件 obj_files sys_args link_args user_lib sys_lib'
+        cmd="g++ -o %s %s %s %s %s %s" % (target," ".join(obj_files),sys_cc_args,link_args,user_lib,sys_lib)
+        if 0==get_target_type(target):
+            cmd +=' -shared '
+    else:
+        cmd='ar -rv %s %s'%(target," ".join(obj_files))
     print(cmd)
     if 0 != os.system(cmd):
         sys.exit(-1)
