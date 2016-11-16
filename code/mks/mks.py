@@ -25,8 +25,10 @@ def compiles(src_files):
     for c_file in src_files:
         if './' == c_file[0:2]:
             c_file=c_file[2:]
-        out_file=obj_dir+ os.path.splitext(c_file.replace('/','_'))[0]+'.o' 
-        cmd='g++ -o %s -c %s %s %s' % (out_file,c_file,cc_args,sys_cc_args)
+        out_file=obj_dir+ os.path.splitext(c_file.replace('/','_'))[0]+'.o'
+        CC='g++ '
+        if '.c'==os.path.splitext(c_file)[1]: CC='gcc '
+        cmd=CC+'-o %s -c %s %s %s' % (out_file,c_file,cc_args,sys_cc_args)
         if 0 == get_target_type(target):
             cmd += ' -fPIC '
         print(cmd)
